@@ -32,17 +32,18 @@ module.exports = async (req, res) => {
             // Check if the current state matches the goal state
             if (await statesAreEqual(currentNode.state, goalState)) {
                 // Found a solution, backtrack to get the path
-                const arraysToGoalState = [];
+                const arraysToGoalState = currentNode
+                // const arraysToGoalState = [];
                 const movesToGoalState = [];
                 const path = [];
                 let current = currentNode;
                 while (current !== null) {
                     path.unshift(current);
-                    arraysToGoalState.unshift(current);
+                    // arraysToGoalState.unshift(current);
                     movesToGoalState.unshift(current.action)
                     current = current.parent;
                 }
-                arraysToGoalState.shift();
+                // arraysToGoalState.shift();
                 movesToGoalState.shift();
 
                 return { arraysToGoalState, movesToGoalState };
